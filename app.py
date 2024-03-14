@@ -21,7 +21,7 @@ def index():
 
 
 def init_fuzzy_system():
-    # Membuat variabel fuzzy dan menentukan fungsi keanggotaan
+    # Membuat variabel fuzzy dan menentukan fungsi keanggotaa   n
     x_input = ctrl.Antecedent(np.arange(0, 11, 1), 'Input')
     y_output = ctrl.Consequent(np.arange(0, 11, 1), 'Output')
 
@@ -81,10 +81,21 @@ def fuzzy_accuracy(actual, predicted):
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    data = request.form.get('data').strip()
-    criteria = request.form.get('criteria').strip()
+    nitrogen = float(request.form.get('nitrogen'))
+    phosphorus = float(request.form.get('fosfor'))
+    calium = float(request.form.get('kalium'))
+    temperature = float(request.form.get('suhu'))
+    conductivity = float(request.form.get('konduktivitas'))
+    humidity = float(request.form.get('kelembapan'))
+    ph = float(request.form.get('ph'))
+    data_input = str(nitrogen) + ',' + str(phosphorus) + ',' + str(calium) + '\n' + str(temperature) + ',' + str(conductivity) + ',' + str(humidity) + '\n' + str(ph) + ',' + str(0.0) + ',' + str(0.0) 
+    criteria_input = '0.4,0.3,0.3'
+    targer_input = '0.7,0.6,0.8'
+    
+    data = data_input.strip()
+    criteria = criteria_input.strip()
     criteria = np.array([float(x) for x in criteria.split(',')])
-    target = request.form.get('target').strip()
+    target = targer_input.strip()
     target = np.array([float(x) for x in target.split(',')])
     data = np.array([[float(x) for x in row.split(',')] for row in data.replace('\\n', '\n').split('\n') if row])
 
@@ -150,7 +161,7 @@ def predict():
     Fuzzy = SVC()
     cv_scores = cross_val_score(Fuzzy, X, y, cv=5)
     
-    data = request.form.get('data').strip()    
+    data = data_input.strip()    
     data = np.array([[float(x) for x in row.split(',')] for row in data.replace('\\n', '\n').split('\n') if row])
 
     normalized_data = data / np.sqrt((data ** 2).sum(axis=0))

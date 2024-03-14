@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html data-theme="light" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="{{ url_for('static', filename='icon.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body class="bg-green-400">
+    <div class="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content flex flex-col items-center min-h-screen bg-green-400 justify-center">
+            <div class="w-full md:pl-6">
+                <div class="bg-white w-full p-3 flex items-center justify-between rounded-b-2xl">
+                    <div>
+                        <label for="my-drawer-2" class="btn bg-green-500 hover:bg-green-600 drawer-button lg:hidden">
+                            <span class="menu-icon"></span>
+                        </label>
+                    </div>
+                    <div class="flex items-center gap-x-3">
+                        <div>
+                            <button class="btn bg-base-200">
+                                <span class="search-icon"></span>
+                            </button>
+                        </div>
+                        <div>
+                            <div class="dropdown dropdown-end">
+                                <div tabindex="0" role="button" class="avatar">
+                                    <div class="w-12 mask mask-squircle">
+                                      <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    </div>
+                                </div>
+                                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                  <li><a>Profile</a></li>
+                                  <li><a>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block content %} {% endblock %}
+        </div> 
+        <div class="drawer-side">
+            <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label> 
+            <ul class="menu p-4 w-80 min-h-full bg-green-200 rounded-r-2xl text-base-content">
+                <li><a class="flex items-center mb-6 bg-green-500 hover:bg-green-600 text-black">
+                        <span class="flower text-2xl"></span>
+                        <div>
+                            <p>Fertilizer</p>
+                            <span class="text-xs">Recomendation System</span>
+                        </div>
+                    </a>
+                </li>
+                <li><a><span class="home text-xl"></span> Home</a></li>
+                <li><a class="bg-white hover:bg-white/50"><span class="plant text-xl"></span> Jenis Pupuk</a></li>
+                <li><a><span class="parameter text-xl"></span>Parameter</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% if fuzzy_values %}
+<h2>Fuzzy Values:</h2>
+<p>{{ fuzzy_values }}</p>
+{% endif %}
+{% if fuzzy_topsis %}
+<h2>Fuzzy TOPSIS Values:</h2>
+<p>{{ fuzzy_topsis }}</p>
+{% endif %}
+<h2>Accurcary:</h2>
+<p>{{ accuracy }}</p>
+
+<h2>Output:</h2>
+<p>{{ output }}</p>
+
+<h2>Precision:</h2>
+<p>{{ precision }}</p>
+
+<h2>Recall:</h2>
+<p>{{ recall }}</p>
+
+<h2>F1 Score:</h2>
+<p>{{ f1_score }}</p>
+
+<h2>CV Score:</h2> 
+<p>{{ cv_score }}</p>
+
+<h2>Mean</h2>
+<p>{{ mean }}</p>
+
+<h2>Standard Deviation</h2>
+<p>{{ std }}</p>
+
+<h2>Results</h2>
+<div>{{ result_table|safe }}</div>
+
+<h1>TOPSIS Ranking Results</h1>
+{% if results %}
+<table border="1">
+<tr>
+    <th>Alternatif</th>
+    <th>Preference Score</th>
+    <th>Rank</th>
+</tr>
+{% for result in results %}
+<tr>
+    <td>{{ result.Alternatif }}</td>
+    <td>{{ result.Preference }}</td>
+    <td>{{ result.Rank }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No results to display.</p>
+{% endif %}
+
+<h2>Mean Preference (Mean)</h2>
+<p>{{ std }}</p>
+
+<img src="data:image/png;base64,{{ x_img }}" alt="Input Membership Function">
+<img src="data:image/png;base64,{{ y_img }}" alt="Output Membership Function">
