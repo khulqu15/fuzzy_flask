@@ -180,7 +180,28 @@ def predict():
     # mean the preference
     mean_preference = Preference.mean()
     
-    return render_template('index.html', results=results, pref=mean_preference, fuzzy_values=fuzzy_values_str, fuzzy_topsis=fuzzy_topsis_str, accuracy=accuracy, output=output, x_img=x_img, y_img=y_img, precision=precision, recall=recall, f1_score=f1_score, cv_scores=cv_scores, mean=cv_scores.mean() * 100, std=cv_scores.std() * 100)
+    return render_template('index.html',
+        nitrogen=nitrogen,
+        phosphorus=phosphorus,
+        calium=calium,
+        temperature=temperature,
+        conductivity=conductivity,
+        humidity=humidity,
+        ph=ph, 
+        results=results,
+        pref=mean_preference, 
+        fuzzy_values=fuzzy_values_str, 
+        fuzzy_topsis=fuzzy_topsis_str, 
+        accuracy=accuracy, 
+        output=output, 
+        x_img=x_img, 
+        y_img=y_img, 
+        precision=precision, 
+        recall=recall, 
+        f1_score=f1_score, 
+        cv_scores=cv_scores, 
+        mean=cv_scores.mean() * 100, 
+        std=cv_scores.std() * 100)
     
 if __name__ == '__main__':
     app.run(debug=True)
